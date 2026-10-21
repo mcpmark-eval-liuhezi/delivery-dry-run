@@ -1,0 +1,3 @@
+# Dry-run status
+
+This drill exercised the full delivery pipeline end to end in one repository: an issue was opened for the on-demand build requirement, Copilot was assigned to it as a trial of the coding-agent triage path, a status note was committed to a feature branch and reviewed through a pull request with an inline verification comment, and a manually triggered GitHub Actions workflow published a `dry-run-report` artifact. Everything ran against the same repository, so Thursday's planning meeting can see the whole flow — issue to review to build artifact — working in one place.
