@@ -1,0 +1,34 @@
+name: Dry run report
+
+on:
+  workflow_dispatch:
+
+jobs:
+  publish-report:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Write report
+        run: |
+          mkdir -p artifact
+          cat > artifact/dry-run-report.txt <<'EOF'
+          Delivery pipeline dry run report
+
+          Repository: mcpmark-eval-liuhezi/delivery-dry-run
+          Trigger: manual (workflow_dispatch)
+          Stages exercised:
+            1. Issue triage with Copilot assignment attempt (issue #1)
+            2. Reviewed pull request with inline verification comment (PR #2)
+            3. This build, publishing the dry-run-report artifact
+
+          This file was generated on demand and uploaded as the
+          dry-run-report workflow artifact.
+          EOF
+          cat artifact/dry-run-report.txt
+
+      - name: Upload report artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: dry-run-report
+          path: artifact/dry-run-report.txt
+          if-no-files-found: error
+          retention-days: 7
